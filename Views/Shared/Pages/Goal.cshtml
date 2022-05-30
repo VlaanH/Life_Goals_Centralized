@@ -1,0 +1,8 @@
+@using LifeGoals.Dbmanagement
+@model LifeGoals.PageObjects.GoalAndStatusObjects
+
+<script>SetBackground("@UserManagement.GetUser(Model.GoalObjects.User).Background");</script>
+
+@await Html.PartialAsync("_title",$"Goal {Model.GoalObjects.Id}")
+
+@await Html.PartialAsync("Goal/Goal", Model)

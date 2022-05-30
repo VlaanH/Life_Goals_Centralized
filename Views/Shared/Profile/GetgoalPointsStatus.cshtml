@@ -1,0 +1,52 @@
+@using System.Security.Claims
+@model GoalObjects
+@{
+     var ajaxUpdate = "OneGoal" + Model.Id;
+
+   
+}
+<div class="goalPoints">
+     <div class="goalPointsStatus">
+                 
+
+          @if (Model.StageImplementation.ToString()!="3")
+          {
+               @if(Model.StageImplementation == EGoalStageImplementation.created)
+               {
+                    <div class="goalStatus iconButton SelectedGoalStatus" > <img class="miniGoalStatusIco" src="/img/X.png"> </div>
+               }
+               else
+               {    
+            
+                    <button class="goalStatus iconButton" onclick="ChangeGoalStatus(@Model.Id,0,'@ajaxUpdate')" ><img class="miniGoalStatusIco" src="/img/X.png"></button>
+               }
+              
+               @if(Model.StageImplementation == EGoalStageImplementation.startedDoing)
+               {
+                    <div class="goalStatus iconButton SelectedGoalStatus"><img class="miniGoalStatusIco" src="/img/time.png"></div>
+               }
+               else
+               {
+                    int formId = 1;
+              
+                    
+                    <button class="goalStatus iconButton" onclick="ChangeGoalStatus(@Model.Id,1,'@ajaxUpdate')" ><img class="miniGoalStatusIco" src="/img/time.png"></button>
+               }
+               
+               @if(Model.StageImplementation == EGoalStageImplementation.isDone)
+               {
+                    <div class="goalStatus iconButton SelectedGoalStatus" ><img class="miniGoalStatusIco" src="/img/check.png"></div>
+               }
+               else
+               {
+                    int formId = 2;
+             
+                    <button class="goalStatus iconButton" onclick="ChangeGoalStatus(@Model.Id,2,'@ajaxUpdate')" ><img class="miniGoalStatusIco" src="/img/check.png"></button>
+               }  
+          }
+          
+     
+     </div>
+</div>
+
+

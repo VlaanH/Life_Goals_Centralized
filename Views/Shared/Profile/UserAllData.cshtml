@@ -1,0 +1,105 @@
+@using LifeGoals.Dbmanagement
+@using System.Security.Claims
+@using LifeGoals.PageObjects
+
+@model LifeGoals.PageObjects.UniversalAddressPage
+@{
+    
+    var user= UserManagement.GetUser(Model.UserAddress);
+   
+}
+
+<script>SetBackground("@user.Background");</script>
+
+
+@await Html.PartialAsync("Profile/UserListDialog",
+    new LifeGoals.PageObjects.UserListDialog() {Users = UserManagement.GetSubscribers(Model.UserAddress),IsOpen = false})
+<div id="User-All-Data">
+    <div class="profileAllInfo">
+        
+        <div class="profileLeft">
+    
+            <img class="profileImage" src="@user.Imag" alt="">
+            <div>
+                <span class="profileName">@user.Nickname</span>
+            </div>
+    
+    
+            @if (Model.PageStatus != EPageStatus.NoAccount)
+            {
+                @if (Model.PageStatus == EPageStatus.Owner)
+                {
+                    <a class="btn rounded-root btn-purple btn-Edit-Profile" id="settingsProfile"
+                       href="/Identity/Account/Manage" content="edit">Edit profile</a>
+                }
+                else
+                {
+                    @if (UserManagement.IsSubscriber(Model.UserAddress,Model.PageVisitor))
+                    {
+                        <button class="btn rounded-root btn-purple btn-Edit-Profile" 
+                                onclick="UnfollowUser()" content="edit">Unsubscribe</button> 
+                    }
+                    else if(Model.PageVisitor!=default)
+                    {
+                           
+                        <button class="btn rounded-root btn-purple btn-Edit-Profile"
+                                onclick="SubscribeToUser()" content="edit">Subscribe</button>    
+                    }
+                    else
+                    {
+                        <a class="btn rounded-root btn-purple btn-Edit-Profile" 
+                            href="/Identity/Account/Register" content="edit">Register</a>
+                       
+                    }
+                }
+            }
+            
+         
+    
+        </div>
+    
+        <div class="profileInfoRight">
+    
+    
+            <div class="infoGrid">
+    
+                @if (user.Description.Length>1075)
+                {
+                    <div class="labeled">Description: @user.Description.Substring(0,1075)...</div>  
+                }
+                else
+                {
+                    <div class="labeled">Description: @user.Description</div> 
+                }
+                
+    
+            </div>
+            <div class="flex profileStats">
+                    
+             
+                <button class="iconButton grid" onclick="GetSubscribers();showDialog('User-list-dialog')">
+                    <a>Subscribers</a>
+                    <a>@UserManagement.GetSubscribersCount(Model.UserAddress)</a>
+                </button>
+    
+               
+              
+                
+                <button class="iconButton grid" onclick="GetSubscriptions();showDialog('User-list-dialog')">
+                    <a>Subscriptions</a>
+                    <a>@UserManagement.GetSubscriptionsCount(Model.UserAddress)</a>
+                </button>
+                
+                <button class="iconButton grid">
+                    <a>Number of messages</a>
+                    <a>@UserManagement.GetGoalsCount(Model.UserAddress)</a>
+                </button>
+                
+            </div>
+            
+            
+            
+        </div>
+    </div>
+    
+</div>

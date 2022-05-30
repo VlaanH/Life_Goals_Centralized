@@ -1,0 +1,107 @@
+@using LifeGoals.Dbmanagement
+@using LifeGoals.PageObjects
+@model LifeGoals.PageObjects.GoalAndStatusObjects
+@{
+    var ajaxUpdate = "OneGoal" + Model.GoalObjects.Id;
+    var user = UserManagement.GetUser(Model.GoalObjects.User);
+    
+
+}
+
+
+<div name="goalUpdate" id="@ajaxUpdate">
+    <div class="goal">
+        <div class="goalUser">
+            <img class="profileMiniImage" src="@user.Imag" alt="">
+            <a>@user.Nickname</a>
+                     
+            <a style="float: right;"
+               href="/home/Goal?address=@Model.GoalObjects.Id"  
+               onclick="return PageAjaxTransition('Goal','@Model.GoalObjects.Id',true)" style="cursor: pointer;">...</a>
+        </div>
+        
+        
+        <div class="goalInf">
+                        
+           
+            <div>
+                <div class="goalTitle">
+                    <a>@Model.GoalObjects.Titles</a>
+                    @if (Model.GoalObjects.StageImplementation == EGoalStageImplementation.created)
+                    {
+                        <img class="miniGoalStatus" src="/img/X.png">
+                    }
+                    else if (Model.GoalObjects.StageImplementation == EGoalStageImplementation.startedDoing)
+                    {
+                        <img class="miniGoalStatus" src="/img/time.png">
+                    }
+                    else if (Model.GoalObjects.StageImplementation == EGoalStageImplementation.isDone)
+                    {
+                        <img class="miniGoalStatus" src="/img/check.png">            
+                    }
+                    
+                    <a>
+                        
+                        @if (Model.GoalObjects.Important==false )
+                        {
+                            @if(Model.PageStatus == EPageStatus.Owner)
+                            {
+                                <button class="iconButton ImportantButton" id="ImportantButton" type="submit" onclick="DoImportant(@Model.GoalObjects.Id,true,'@ajaxUpdate')">
+                                    <svg aria-hidden="true" focusable="false" class="goalStar">
+                                        <use xlink:href="#stars-empty-star"/>
+                                    </svg>
+                                </button>  
+                            }
+                            
+                        }
+                        else
+                        {
+                            @if (Model.PageStatus == EPageStatus.Owner)
+                            {
+                                <button class="iconButton ImportantButton" type="submit" onclick="DoImportant(@Model.GoalObjects.Id,false,'@ajaxUpdate')">
+                                
+                                    <svg aria-hidden="true" focusable="false" class="goalStar">
+                                        <use xlink:href="#stars-full-star"/>
+                                    </svg>
+                                </button>
+                                
+                            }
+                            else
+                            {
+                                <svg aria-hidden="true" focusable="false" class="goalStar ImportantSvg">
+                                    <use xlink:href="#stars-full-star"/>
+                                </svg>    
+                            }
+                            
+                        }
+                        
+                   </a> 
+                          
+                </div>
+                            
+            </div>
+            
+            
+            <div class="goal_description" >@Html.Raw(Model.GoalObjects.Body)</div>
+                        
+        </div>
+                   
+        <div>
+            
+            @if (Model.GoalObjects.IsDonate)
+            { 
+                @(await Html.PartialAsync("Profile/CurrencyProgress", Model.GoalObjects))
+            }
+            
+            
+            @if (Model.PageStatus== EPageStatus.Owner)
+            {
+                <partial name="Profile/GetgoalPointsStatus" model="Model.GoalObjects"/>
+            }
+            
+
+        </div>
+       
+        
+    </div>
+</div>

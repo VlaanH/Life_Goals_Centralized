@@ -1,0 +1,48 @@
+@model UniversalAddressPage
+@using LifeGoals.PageObjects
+
+@{
+
+    var address = Model.UserAddress;
+    var status = Model.PageStatus;
+    
+}
+@await Html.PartialAsync("_title",$"User {address}")
+<script>
+    var PageName="Profile";
+    var AddressPage="@address";
+    var StatusPage="@status";
+</script>
+
+  
+@await Html.PartialAsync("SVG/SVG")
+
+    
+<partial name="Profile/DonatDialog" model="address"/>
+
+
+<div class="text-center">
+  
+    <div class="profileWrapper">
+        
+        
+        @await Html.PartialAsync("Profile/UserAllData",Model)
+        
+        @await Html.PartialAsync("Profile/GoalLine",address)
+
+
+        @if (status == EPageStatus.Owner)
+        {
+            @await Html.PartialAsync("Profile/CreateGoal")
+        }
+        
+            
+
+        
+        <div class="goals" id="allGoals">
+            @await Html.PartialAsync("Goal/GetAllGoals",new AllGoalsScroll(){Address = address,ScrollNumber = 1,PageStatus = status})
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,71 @@
+@using LifeGoals.Dbmanagement;
+@await Html.PartialAsync("_title",$"Welcome to LifeGoals")
+
+<div class="text-center">
+    <div style="margin-top: 230px;">
+        <h1 class="Logo">
+            <span style="">LifeGoals</span>
+           
+        </h1>
+        <span>Free social network</span>
+        
+     
+        <div class="AutWelcomeBtn">
+            <a class="btn btn-purple rounded-root" asp-area="Identity" asp-page="/Account/Register" style="text-decoration: none; margin-inline: 10px;">Register</a>
+            <a class="btn btn-purple rounded-root" asp-area="Identity" asp-page="/Account/Login" style="text-decoration: none; margin-inline: 10px;">Login</a>
+        </div>
+           
+            
+    </div>
+    
+    
+    <div>
+        <div class="WelcomeStats">
+            
+            <div class="WelcomeStatsItem">
+                <span>@WebStats.GetAccountCount()+</span>
+                <p class="WelcomeStatsItemP">Users</p>
+            </div>
+            <div class="WelcomeStatsItem">
+                <span>@WebStats.GetGoalsCount()+</span>
+                <p class="WelcomeStatsItemP">Goals and messages</p>
+            </div>
+            <div class="WelcomeStatsItem">
+                 <span>@WebStats.Requests+</span>
+                 <p class="WelcomeStatsItemP">Web requests</p>
+             </div>
+            
+        </div>
+        
+        
+        <div class="WelcomeInf">
+            
+            <div class="WelcomeInfBox1">
+               <h2 class="WelcomeInfBoxH">LifeGoals</h2>
+                <p class="WelcomeInfBoxP">A social network where you can share messages, set goals and raise funds for them.
+                    Money is collected in the cryptocurrency Ethereum.</p>
+            </div>
+           
+            
+            <div>
+                <div class="WelcomeInfBox2">
+                    <h2 class="WelcomeInfBoxH">Goals and messages</h2>
+                    <p class="WelcomeInfBoxP">Share information without censorship and set goals and raise money to achieve them.</p>
+                </div>
+                
+                 <div class="WelcomeInfBox2">
+                     <h2 class="WelcomeInfBoxH">Fundraising</h2>
+                     <p class="WelcomeInfBoxP">Use the Ethereum cryptocurrency to collect money, you can send it by scanning the QR code or to the wallet address.</p>
+                 </div>
+                
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+    </div>
+    
+</div>

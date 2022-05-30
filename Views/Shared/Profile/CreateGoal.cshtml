@@ -1,0 +1,50 @@
+<div class="div_create_goal" id="CreateGoal">
+    
+    <div style="display: flex;">
+                        
+        <input class="input-radius form-control blue" name="title" id="CreateGoalTitle" placeholder="Title" autocomplete="off" style="display: initial;width: 100%;margin-bottom: 24px;"/>
+
+
+    </div>
+                   
+        
+
+    <textarea placeholder="Body description..."  name="body" id="CreateGoalBody" rows="3" class="textarea_description"></textarea>
+
+        <div class="flex">
+            
+            <input type="checkbox" onchange="
+            dependencyOnCheckbox(this,'isDonate');
+            dependencyOnCheckbox(this,'isDonateLabel');
+            dependencyOnCheckboxHiddenOnly(this,'donate');
+            CheckboxOff('isDonate')" id="isGoal" name="isGoal" class="checkbox" value="true"/>
+            
+            <label for="isGoal" class="checkboxText">Is Goal</label>
+            
+            <input type="checkbox" hidden="hidden" onchange="dependencyOnCheckbox(this,'donate')"
+                   id="isDonate" name="isDonate" class="checkbox" value="true"/>
+            <label for="isDonate" hidden="hidden" id="isDonateLabel"  class="checkboxText">Is Donate</label>
+            
+            <div id="donate" hidden="hidden" style="display: flex; width: 100%">
+            
+                <input class="input-radius form-control blue donate_Value"  name="donateValue" id="CreateGoalDonateValue" placeholder="ETH Value" type="text"
+                       oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+                       value="0.001" maxlength="10"  autocomplete="off">
+                
+                <svg aria-hidden="true" focusable="false" class="currency_svg" style="margin-top: 5px;">
+                    <use xlink:href="#ETH"></use>
+                </svg>
+
+
+                <input class="input-radius form-control blue donate_Value" 
+                       style="width: 100%;" name="Address" id="CreateGoalAddress" placeholder="ETH Address" type="text"
+                       autocomplete="off" >
+            </div>
+            
+            
+            
+        </div>
+    
+    <button class="btn btn-white-purple rounded-root" onclick="AddGoal()">Сreate</button>
+   
+</div>

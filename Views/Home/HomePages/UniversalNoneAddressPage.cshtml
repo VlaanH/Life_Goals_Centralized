@@ -1,0 +1,20 @@
+@model LifeGoals.PageObjects.UniversalAddressPage
+
+<script>
+var AddressPage="@Model";
+</script>
+
+    <div class="text-center">
+        <div class="spin-wrapper">
+            <div class="spinner">
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    function initPage() 
+        {PageAjaxTransition("@Model.Page","@Model.UserAddress",false);}
+</script>
+
+

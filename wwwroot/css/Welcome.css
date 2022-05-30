@@ -1,0 +1,111 @@
+.Logo
+{
+    font-size: 56px;
+    overflow-wrap: normal;
+    color: #ae7fe5;
+    font-weight: 600;
+    margin: 0px;
+}
+.AutWelcomeBtn
+{
+    margin-inline: 3px;
+    justify-content: center;
+    display: flex;
+    margin-top: 13px;
+}
+
+.WelcomeStats
+{
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.WelcomeStats
+{
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 100px;
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+.WelcomeStatsItem
+{
+    margin-inline: 15px
+
+}
+.WelcomeStatsItemP
+{
+    font-size:14px
+}
+
+.WelcomeInf
+{
+    justify-content: center;
+    display: flex;
+    margin-top: 100px;
+}
+.WelcomeInfBox1
+{
+    border: 2px solid rgb(191 160 185 / 41%);
+    width: 400px;height: 400px;
+    background-color: #cbb3e8;
+    border-radius: 42px;
+    padding: 24px;
+}
+
+.WelcomeInfBox2
+{
+    margin-bottom: 10px;
+    margin-left: 30px;
+    border: 2px solid rgb(191 160 185 / 41%);
+    max-width: 608px;
+    height: 48%;
+    background-color: #D6D6D6;
+    border-radius: 42px;
+    padding: 24px;
+}
+.WelcomeInfBoxH
+{
+    margin-inline-end: 0px;
+    text-align: left;
+}
+.WelcomeInfBoxP
+{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;text-align: left;
+    margin: 0;
+    opacity: 0.6;
+    font-size: 21px;
+    font-weight: 400;
+}
+@media (max-width:767px) 
+{
+    .WelcomeInf
+    {
+        display: block;
+    }
+    .WelcomeInfBox1
+    {
+        margin-left: 30px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .WelcomeInfBox2
+    {
+        width: 100%;
+    }
+}

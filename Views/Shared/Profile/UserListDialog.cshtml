@@ -1,0 +1,49 @@
+@model LifeGoals.PageObjects.UserListDialog
+@if (Model.IsOpen)
+{
+    <script>showDialog("User-list-dialog")</script>
+}
+<div id="Update-User-dialog">
+    <div class="text-center" id="User-dialog">
+        <section>
+            <dialog id="User-list-dialog" class="site-dialog" >
+                <header class="dialog-header">
+                    <h1 id="MainDialog" style="color: white">User list</h1>
+                </header>
+                <div class="dialog-content">
+                    <div style="">
+                        <div class="user-list-title">
+                            <a>User</a>
+                            <a>Address</a>
+                        </div>
+                        @if (Model.Users.Count!=0)
+                        {
+                            @foreach (var user in Model.Users)
+                            {
+                                <a class="user-list-unit pointer iconButton black-link"
+                                    onclick="return PageAjaxTransition('Profile','@user.Id',true)" page="Profile" address="true" href="/?address=@user.Id">
+                                    
+                                    <span>
+                                        <image src="@user.Imag" class="profileMiniImage"/>
+                                        <span>@user.Nickname</span>
+                                    </span>
+
+                                    <span class="flex center">
+                                        <span>@user.Id</span>
+                                    </span>
+                                </a>
+                            } 
+                        }
+                        else
+                        {
+                            <div>User list is empty</div>
+                        }
+                    </div>
+                </div>
+                <div class="btn-group cf">
+                    <button class="btn btn-cancel" id="cancel-user-list-dialog" onclick="cancelDialog('User-list-dialog')">Cancel</button>
+                </div>
+            </dialog>
+        </section>
+    </div>
+</div>

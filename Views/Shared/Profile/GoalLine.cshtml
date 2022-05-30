@@ -1,0 +1,54 @@
+@using LifeGoals.Dbmanagement
+@model string
+@{
+    var importantGoals = Goals.GetAllImportantGoals(Model);
+}
+<div id="goalsLine">
+
+    <div class="points">
+        
+        @foreach (var goal in importantGoals)
+        {
+            <div class="point" style="float: right;cursor: pointer;"
+                                              href="/home/Goal?address=@goal.Id"  
+                                              onclick="return PageAjaxTransition('Goal','@goal.Id',true)">
+                <div class="descr">
+
+                    @if (goal.Titles.Length > 30)
+                    {
+                        <a>@goal.Titles.Replace("<br>", default).Substring(0, 30)...</a>
+
+                    }
+                    else
+                    {
+                        <a>@goal.Titles.Replace("<br>", default)</a>
+                    }
+                    
+                    <br>
+                    
+                    @if (goal.Body != default)
+                    {
+                        @if (goal.Body.Length > 80)
+                        {
+                            <div class="goal_description">@goal.Body.Replace("<br>", default).Substring(0, 80)...</div>
+                        }
+                        else
+                        {
+                            <div class="goal_description">@goal.Body.Replace("<br>", default)</div>
+                        }
+                    }
+
+
+                </div>
+            </div>
+        }
+
+
+
+
+    </div>
+        <svg class="goalsLine">
+           <line x1="0.5%" x2="99.5%" y1="10%" y2="10%" stroke="black" stroke-width="8" stroke-linecap="round"></line>
+        </svg>
+    
+</div>
