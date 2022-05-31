@@ -87,5 +87,5 @@ Test2@gmail.com;m15Cd#m15Cd#
 # База данных
 В проекте используется ORM библиотека Entity Framework. По этой причине выбор конкретной базы данных не так важен, для удобства тут используется SQLite.
 
-# Почему не alpine linux?
+# Почему не alpine linux а Debian?
 В alpine linux у меня возникли проблемы с https
