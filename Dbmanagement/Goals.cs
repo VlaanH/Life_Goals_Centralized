@@ -103,31 +103,7 @@ namespace LifeGoals.Dbmanagement
             }
         }
 
-        public static void SetMaxDonateValueThread(int goalId)
-        {
-            new Thread(async () =>
-            {
-              
-                
-                using (ApplicationDbContext db = new ApplicationDbContext())
-                {
-                    var goal = db.Goals.Single(id => id.Id == goalId);
-                    
-                    var balance = await new EthereumRinkebyNet().GetBalance(goal.PublicAddress);
-
-                    if (decimal.Parse( balance,new CultureInfo("en-us"))>decimal.Parse( goal.MaxDonateValue,new CultureInfo("en-us")))
-                    {
-                        goal.MaxDonateValue = balance;
-                    }
-                   
-                    
-                    await db.SaveChangesAsync();
-                }
-                
-                
-            }).Start();
-           
-        }
+        
         
         public static List<GoalObjects> GetUserGoals(string userId)
         {
@@ -135,9 +111,6 @@ namespace LifeGoals.Dbmanagement
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 userGoalObjectsList = db.Goals.Where(g => g.User == userId).ToList();
-                
-                
-                
 
             }
             userGoalObjectsList.Reverse();

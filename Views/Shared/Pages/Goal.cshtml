@@ -1,6 +1,9 @@
 @using LifeGoals.Dbmanagement
 @model LifeGoals.PageObjects.GoalAndStatusObjects
 
+@await Html.PartialAsync("SVG/SVG")
+<partial name="Profile/DonatDialog" model=Model.GoalObjects.User/>
+
 <script>SetBackground("@UserManagement.GetUser(Model.GoalObjects.User).Background");</script>
 
 @await Html.PartialAsync("_title",$"Goal {Model.GoalObjects.Id}")

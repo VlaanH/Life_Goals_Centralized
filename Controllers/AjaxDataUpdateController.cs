@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using lifeGoals.Cryptocurrencies.Ethereum;
 using LifeGoals.Dbmanagement;
 using LifeGoals.PageObjects;
 using Microsoft.AspNetCore.Authorization;
@@ -13,6 +12,23 @@ namespace LifeGoals.Controllers
 {
     public class AjaxDataUpdateController:Controller
     {
+        
+        private static string GoalNormalization(string test)
+        {
+            
+            //replacing all html tags
+            test=test.Replace("<","'");
+            test=test.Replace(">","'");
+            
+            
+            //replacing special characters with an indent tag
+            test=test.Replace("\n","<br>");
+            test=test.Replace("\r","<br>");
+            
+            
+            test=test.Replace(@"\",@"\\");
+            return test;
+        }
         public IActionResult GetSubscriptionStatus(string address,string pageVisitor)
         {
             WebStats.Requests++;
@@ -73,6 +89,8 @@ namespace LifeGoals.Controllers
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+                body = GoalNormalization(body);
+                
                 if(isDonate)
                 {
                     double dDonateValue = 0;

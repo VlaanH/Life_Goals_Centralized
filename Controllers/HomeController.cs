@@ -20,7 +20,6 @@ using LifeGoals.PageObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace LifeGoals.Controllers
 {

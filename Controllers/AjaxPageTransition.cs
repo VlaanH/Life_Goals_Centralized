@@ -1,6 +1,5 @@
 using System;
 using System.Security.Claims;
-using lifeGoals.Cryptocurrencies.Ethereum;
 using LifeGoals.Dbmanagement;
 using LifeGoals.PageObjects;
 using Microsoft.AspNetCore.Mvc;
@@ -59,7 +58,7 @@ namespace LifeGoals.Controllers
             }
             else
             {
-                return PartialView("Pages/Feed", new UniversalAddressPage { UserAddress = address, PageVisitor = addressVisitor, PageStatus = pageStatus });
+                return PartialView("Pages/Feed", new UniversalAddressPage { UserAddress = address, PageVisitor = addressVisitor, PageStatus = EPageStatus.Authorized });
             }
            
         }

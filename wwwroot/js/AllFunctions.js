@@ -40,7 +40,22 @@ function AddGoal()
     var donateValue = document.getElementById('CreateGoalDonateValue').value;
     var address = document.getElementById('CreateGoalAddress').value;
 
-    addGoal(isGoal,isDonate,title,body,donateValue,address);
+    if (isDonate)
+    {
+        if (address.length===42&& address[0]==='0' && address[1]==='x')
+        {
+            addGoal(isGoal,isDonate,title,body,donateValue,address);
+        }
+        else
+        {
+            alert("invalid wallet");
+        }
+        
+    }
+    else 
+    {
+        addGoal(isGoal,isDonate,title,body,donateValue,address);
+    }
 
 }
 

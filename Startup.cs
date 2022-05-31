@@ -10,7 +10,6 @@ using LifeGoals.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace LifeGoals
 {
@@ -29,12 +28,7 @@ namespace LifeGoals
         public void ConfigureServices(IServiceCollection services)
         {
     
-            services.AddRecaptcha(new RecaptchaOptions
-            {
-                SiteKey = "6Lc2u0IaAAAAAOjtY1GNGXNcdDwWiIknTrfvJ3W2",
-                SecretKey = "6Lc2u0IaAAAAAM8AXiZG5N8AKHxB4PL1B52bSOzf",
-                ValidationMessage = "Are you a robot?"
-            });
+          
             services.AddDbContext<Models.ApplicationDbContext>(options =>
                 options.UseSqlite(
                     
